@@ -1,0 +1,90 @@
+/*=========================================================
+Projeto : Status X92S
+Arquivo : layout.css
+=========================================================*/
+
+/*=========================================================
+Configuração geral
+=========================================================*/
+
+* {
+  box-sizing: border-box;
+  }
+
+/*=========================================================
+Página
+=========================================================*/
+
+body {
+margin: 0;
+height: 100%;
+
+```
+overflow: hidden;
+
+font-family: "Segoe UI", Arial, sans-serif;
+
+background: var(--bg);
+color: var(--texto);
+```
+
+}
+
+/*=========================================================
+Container principal
+=========================================================*/
+
+.pagina {
+width: 100%;
+height: 100vh;
+
+```
+min-height: 0;
+
+display: flex;
+flex-direction: column;
+
+gap: var(--gap);
+
+padding: 12px;
+```
+
+}
+
+/*=========================================================
+Conteúdo principal
+=========================================================*/
+
+.conteudo {
+flex: 1;
+
+```
+min-height: 0;
+
+display: flex;
+flex-direction: column;
+
+gap: var(--gap);
+
+align-items: stretch;
+```
+
+}
+
+/*=========================================================
+Painéis
+=========================================================*/
+
+.painel {
+min-height: 0;
+
+```
+background: var(--card);
+
+border: 1px solid var(--borda);
+border-radius: var(--raio);
+
+box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+```
+
+}

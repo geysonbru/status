@@ -1,0 +1,141 @@
+/*=========================================================
+Projeto : Status X92S
+Arquivo : tabela.css
+
+Responsável por:
+
+* Layout da tabela
+* Cabeçalho fixo
+* Rolagem horizontal e vertical
+* Alinhamento das colunas
+* Efeito visual das linhas
+  =========================================================*/
+
+/*=========================================================
+
+1. CONTAINER DA TABELA
+   =========================================================*/
+
+.tabela {
+display: flex;
+flex-direction: column;
+
+```
+overflow: hidden;
+
+width: 100%;
+
+min-width: 0;
+```
+
+}
+
+/*=========================================================
+2. ÁREA DE ROLAGEM
+=========================================================*/
+
+.tabela-scroll {
+flex: 1;
+
+```
+min-height: 0;
+
+overflow-y: auto;
+overflow-x: auto;
+```
+
+}
+
+/*=========================================================
+3. TABELA
+=========================================================*/
+
+#tabelaIndicadores {
+width: 100%;
+
+```
+border-collapse: collapse;
+
+white-space: nowrap;
+```
+
+}
+
+/*=========================================================
+4. CABEÇALHO
+=========================================================*/
+
+#tabelaIndicadores th {
+position: sticky;
+
+```
+top: 0;
+
+z-index: 5;
+
+padding: 8px 10px;
+
+background: var(--azul);
+
+color: white;
+
+border-bottom: 1px solid #bfc7cf;
+
+font-size: 13px;
+
+text-align: center;
+```
+
+}
+
+/*=========================================================
+5. CÉLULAS
+=========================================================*/
+
+#tabelaIndicadores td {
+padding: 6px 10px;
+
+```
+border-bottom: 1px solid #ddd;
+
+font-size: 13px;
+
+text-align: left;
+```
+
+}
+
+/*=========================================================
+6. ALINHAMENTO DAS COLUNAS
+=========================================================*/
+
+/* Nome */
+#tabelaIndicadores td:nth-child(1) {
+text-align: left;
+}
+
+/* Descrição */
+#tabelaIndicadores td:nth-child(2) {
+text-align: left;
+}
+
+/* Atualização */
+#tabelaIndicadores td:nth-child(3) {
+text-align: center;
+}
+
+/*=========================================================
+7. EFEITO AO PASSAR O MOUSE
+=========================================================*/
+
+#tabelaIndicadores tbody tr:hover {
+background: #f3f7fa;
+}
+
+/*=========================================================
+8. NÚMEROS E DATAS
+=========================================================*/
+
+#tabelaIndicadores td:nth-child(3) {
+font-variant-numeric: tabular-nums;
+}
