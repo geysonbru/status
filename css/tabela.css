@@ -1,109 +1,97 @@
 /*=========================================================
 Projeto : Status X92S
 Arquivo : tabela.css
+=========================================================*/
 
-Responsável por:
-
-* Layout da tabela
-* Cabeçalho fixo
-* Rolagem horizontal e vertical
-* Alinhamento das colunas
-* Efeito visual das linhas
-  =========================================================*/
 
 /*=========================================================
-
 1. CONTAINER DA TABELA
-   =========================================================*/
+=========================================================*/
 
 .tabela {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-```
-overflow: hidden;
+    overflow: hidden;
 
-width: 100%;
+    width: 100%;
 
-min-width: 0;
-```
-
+    min-width: 0;
 }
+
 
 /*=========================================================
 2. ÁREA DE ROLAGEM
 =========================================================*/
 
 .tabela-scroll {
-flex: 1;
+    flex: 1;
 
-```
-min-height: 0;
+    min-height: 0;
 
-overflow-y: auto;
-overflow-x: auto;
-```
-
+    overflow-y: auto;
+    overflow-x: auto;
 }
+
 
 /*=========================================================
 3. TABELA
 =========================================================*/
 
 #tabelaIndicadores {
-width: 100%;
+    width: 100%;
 
-```
-border-collapse: collapse;
+    border-collapse: collapse;
 
-white-space: nowrap;
-```
+    white-space: nowrap;
 
+    background: white;
 }
+
 
 /*=========================================================
 4. CABEÇALHO
 =========================================================*/
 
 #tabelaIndicadores th {
-position: sticky;
+    position: sticky;
 
-```
-top: 0;
+    top: 0;
 
-z-index: 5;
+    z-index: 5;
 
-padding: 8px 10px;
+    padding: 8px 10px;
 
-background: var(--azul);
+    background: var(--azul);
 
-color: white;
+    color: white;
 
-border-bottom: 1px solid #bfc7cf;
+    border: 1px solid #c8c8c8;
 
-font-size: 13px;
+    font-size: 13px;
 
-text-align: center;
-```
-
+    text-align: center;
 }
+
 
 /*=========================================================
 5. CÉLULAS
 =========================================================*/
 
 #tabelaIndicadores td {
-padding: 6px 10px;
+    padding: 6px 10px;
 
-```
-border-bottom: 1px solid #ddd;
+    background: white;
 
-font-size: 13px;
+    color: var(--texto);
 
-text-align: left;
-```
+    border: 1px solid #d6d6d6;
 
+    font-size: 13px;
+
+    text-align: left;
 }
+
 
 /*=========================================================
 6. ALINHAMENTO DAS COLUNAS
@@ -111,17 +99,28 @@ text-align: left;
 
 /* Nome */
 #tabelaIndicadores td:nth-child(1) {
-text-align: left;
+    text-align: left;
 }
+
 
 /* Descrição */
 #tabelaIndicadores td:nth-child(2) {
-text-align: left;
+    text-align: left;
 }
+
 
 /* Atualização */
 #tabelaIndicadores td:nth-child(3) {
-text-align: center;
+    text-align: center;
+
+    font-variant-numeric: tabular-nums;
+}
+
+/*LARGURA DA COLUNA ATUALIZAÇÃO*/
+#tabelaIndicadores th:nth-child(3),
+#tabelaIndicadores td:nth-child(3) {
+    width: 1%;
+    white-space: nowrap;
 }
 
 /*=========================================================
@@ -129,13 +128,9 @@ text-align: center;
 =========================================================*/
 
 #tabelaIndicadores tbody tr:hover {
-background: #f3f7fa;
+    background: #f5f5f5;
 }
 
-/*=========================================================
-8. NÚMEROS E DATAS
-=========================================================*/
-
-#tabelaIndicadores td:nth-child(3) {
-font-variant-numeric: tabular-nums;
+#tabelaIndicadores tbody tr:hover td {
+    background: #f5f5f5;
 }
