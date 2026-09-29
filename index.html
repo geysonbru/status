@@ -1,117 +1,146 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
 
-<title>Status X92S</title>
+    <title>Status X92S</title>
 
-<link rel="icon" type="image/png" href="img/logo.png">
-<link rel="stylesheet" href="css/estilo.css">
+    <link rel="icon"
+          type="image/png"
+          href="img/logo.png">
 
+    <link rel="stylesheet"
+          href="css/estilo.css">
 
 </head>
 
 <body>
 
+    <div class="pagina">
 
-<div class="pagina">
-
-    <!-- =========================================================
+        <!-- =====================================================
                              CABEÇALHO
-    ========================================================== -->
-    <header class="cabecalho">
+        ====================================================== -->
 
-        <div class="logo">
-            <img src="img/logo.png" alt="Logo Celesc">
-        </div>
+        <header class="cabecalho">
 
-        <h1>Status X92S</h1>
+            <div class="logo">
 
-        <div class="informacoes-topo">
+                <img src="img/logo.png"
+                     alt="Logo Celesc">
 
-            <div class="info-topo">
-                <div id="dtProcessamento">--</div>
-                <small>Último Dado</small>
             </div>
 
-            <div class="info-topo">
-                <div id="dtAtualizacaoPagina">--</div>
-                <small>Atualização da Página</small>
+
+            <h1>Status X92S</h1>
+
+
+            <div class="informacoes-topo">
+
+                <div class="info-topo">
+
+                    <div id="dtProcessamento">
+                        --
+                    </div>
+
+                    <small>
+                        Último Dado
+                    </small>
+
+                </div>
+
+
+                <div class="info-topo">
+
+                    <div id="dtAtualizacaoPagina">
+                        --
+                    </div>
+
+                    <small>
+                        Atualização da Página
+                    </small>
+
+                </div>
+
+
+                <div class="info-topo">
+
+                    <div id="relogioAtual">
+                        --:--:--
+                    </div>
+
+                    <small>
+                        Hora Atual
+                    </small>
+
+                </div>
+
             </div>
 
-            <div class="info-topo">
-                <div id="relogioAtual">--:--:--</div>
-                <small>Hora Atual</small>
-            </div>
-
-        </div>
-
-    </header>
+        </header>
 
 
-    <!-- =========================================================
-                        CONTEÚDO PRINCIPAL
-    ========================================================== -->
-    <main class="conteudo">
+        <!-- =====================================================
+                          CONTEÚDO PRINCIPAL
+        ====================================================== -->
 
-        <section class="painel tabela">
+        <main class="conteudo">
 
-            <div class="tabela-scroll">
+            <section class="painel tabela">
 
-                <table id="tabelaIndicadores">
+                <div class="tabela-scroll">
 
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Descrição</th>
-                            <th>Atualização</th>
-                        </tr>
-                    </thead>
+                    <table id="tabelaIndicadores">
 
-                    <tbody id="tbodyIndicadores">
-                        <!--
-                            Linhas inseridas dinamicamente via JavaScript.
-
-                            Exemplo:
+                        <thead>
 
                             <tr>
-                                <td>IP local</td>
-                                <td>10.6.55.7</td>
-                                <td>28/09/2026 16:40:00</td>
+
+                                <th>Nome</th>
+
+                                <th>Descrição</th>
+
+                                <th>Atualização</th>
+
                             </tr>
-                        -->
-                    </tbody>
 
-                </table>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div> <!-- /pagina -->
+                        </thead>
 
 
-<!-- =========================================================
-                 ELEMENTO PARA MENSAGENS DO SISTEMA
-========================================================== -->
-<div id="mensagemSistema" class="mensagem-sistema"></div>
+                        <tbody id="tbodyIndicadores">
+
+                            <!-- Linhas inseridas pelo JavaScript -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
 
 
-<!-- =========================================================
-                            SCRIPTS
-========================================================== -->
-<link rel="stylesheet" href="css/variaveis.css">
-<link rel="stylesheet" href="css/estilo.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/cabecalho.css">
-<link rel="stylesheet" href="css/tabela.css">
-<link rel="stylesheet" href="css/responsivo.css">
+    <!-- =====================================================
+                       SCRIPTS JAVASCRIPT
+    ====================================================== -->
 
+    <script src="js/api.js"></script>
+
+    <script src="js/cabecalho.js"></script>
+
+    <script src="js/tabela.js"></script>
+
+    <script src="js/main.js"></script>
 
 </body>
+
 </html>

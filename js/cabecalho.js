@@ -1,103 +1,188 @@
-/*========================================================
-Projeto : Acompanhamento de Serviços
+/*=========================================================
+Projeto : Status X92S
 Arquivo : cabecalho.js
 
-Responsável pelas informações do cabeçalho:
-    - Último Dado
-    - Hora Atual
-========================================================*/
+Responsável por:
+- Último Dado
+- Atualização da Página
+- Hora Atual
+=========================================================*/
 
 
-/*========================================================
-Atualiza informações do cabeçalho
-========================================================*/
+/*=========================================================
+Último Dado
+=========================================================*/
 
-function atualizarCabecalho(dados) {
+function atualizarUltimoDado(
+    indicadores
+) {
 
-    /*------------------------------------------------------
-    Último dado disponível
-
-    Posteriormente poderá vir dos metadados publicados pelo
-    Atualizador.
-    ------------------------------------------------------*/
-
-    const elProcessamento =
+    const elemento =
         document.getElementById(
             "dtProcessamento"
         );
 
-    if (elProcessamento) {
 
-        elProcessamento.textContent =
-            dados?.ultimaAtualizacao ?? "--";
-
+    if (!elemento) {
+        return;
     }
 
+
+    if (
+        !Array.isArray(indicadores)
+        ||
+        indicadores.length === 0
+    ) {
+
+        elemento.textContent = "--";
+
+        return;
+    }
+
+
+    /*
+        Neste momento temos apenas um indicador.
+        Posteriormente poderemos fazer uma busca pela
+        maior data entre todos os indicadores.
+    */
+
+    const ultimo =
+        indicadores[indicadores.length - 1];
+
+
+    elemento.textContent =
+        ultimo?.atualizacao ?? "--";
 }
 
 
-/*========================================================
+/*=========================================================
+Atualização da Página
+=========================================================*/
+
+function atualizarDataAtualizacaoPagina() {
+
+    const elemento =
+        document.getElementById(
+            "dtAtualizacaoPagina"
+        );
+
+
+    if (!elemento) {
+        return;
+    }
+
+
+    elemento.textContent =
+        formatarDataHora(
+            new Date()
+        );
+}
+
+
+/*=========================================================
+Relógio
+=========================================================*/
+
+function atualizarRelogio() {
+
+    const elemento =
+        document.getElementById(
+            "relogioAtual"
+        );
+
+
+    if (!elemento) {
+        return;
+    }
+
+
+    const agora =
+        new Date();
+
+
+    const hora =
+        String(
+            agora.getHours()
+        ).padStart(2, "0");
+
+
+    const minuto =
+        String(
+            agora.getMinutes()
+        ).padStart(2, "0");
+
+
+    const segundo =
+        String(
+            agora.getSeconds()
+        ).padStart(2, "0");
+
+
+    elemento.textContent =
+        `${hora}:${minuto}:${segundo}`;
+}
+
+
+/*=========================================================
 Inicia relógio
-========================================================*/
+=========================================================*/
 
 function iniciarRelogio() {
 
     atualizarRelogio();
 
+
     setInterval(
         atualizarRelogio,
         1000
     );
-
 }
 
 
-/*========================================================
-Atualiza relógio
-========================================================*/
+/*=========================================================
+Formatação de data/hora
+=========================================================*/
 
-function atualizarRelogio() {
+function formatarDataHora(
+    data
+) {
 
-    const elRelogio = document.getElementById("relogioAtual");
+    const dia =
+        String(
+            data.getDate()
+        ).padStart(2, "0");
 
-    if (!elRelogio) {
-        return;
-    }
 
-    /*
-        Aqui utilizamos a função formatarDataHora()
-        definida em utils.js.
+    const mes =
+        String(
+            data.getMonth() + 1
+        ).padStart(2, "0");
 
-        Ela aceita tanto:
-            - objetos Date;
-            - strings de data vindas do JSON.
 
-        Como o relógio envia new Date(), funciona
-        normalmente.
+    const ano =
+        data.getFullYear();
 
-        E, principalmente, não sobrescrevemos mais
-        a função global usada pela tabela.
-    */
 
-    elRelogio.textContent =
-        formatarDataHora(
-            new Date()
-        );
+    const hora =
+        String(
+            data.getHours()
+        ).padStart(2, "0");
 
-}
 
-/*========================================================
-Atualiza horário da última atualização da página
-========================================================*/
+    const minuto =
+        String(
+            data.getMinutes()
+        ).padStart(2, "0");
 
-function atualizarDataAtualizacaoPagina() {
 
-    const elAtualizacao = document.getElementById("dtAtualizacaoPagina");
+    const segundo =
+        String(
+            data.getSeconds()
+        ).padStart(2, "0");
 
-    if (!elAtualizacao) {
-        return;
-    }
 
-    elAtualizacao.textContent =
-        formatarDataHora(new Date() );
+    return (
+        `${dia}/${mes}/${ano} ` +
+        `${hora}:${minuto}:${segundo}`
+    );
 }

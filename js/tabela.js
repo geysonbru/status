@@ -1,86 +1,153 @@
-/*========================================================
-Projeto: Acompanhamento de Serviços
-Arquivo: tabela.js
+/*=========================================================
+Projeto : Status X92S
+Arquivo : tabela.js
 
 Responsável por:
-- Renderização e manipulação da tabela de serviços
-- Formatação das células (datas, moeda, tempo excedido)
-- Atualização do contador de registros no título
-========================================================*/
+- Montar a tabela de indicadores
+=========================================================*/
 
 
-/* =======================================================
-   1. ATUALIZAÇÃO DA TABELA
-======================================================= */
+/*=========================================================
+Atualiza a tabela
+=========================================================*/
 
-/**
- * Renderiza todas as linhas recebidas na tabela de serviços.
- * @param {Array} linhas - Lista de objetos contendo os serviços/documentos.
- */
-function atualizarTabela(linhas) {
-    const tbody = document.getElementById("tbodyServicos");
-    tbody.innerHTML = "";
+function atualizarTabela(indicadores) {
 
-    if (!linhas || linhas.length === 0) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="13" class="sem-registros">
-                    Nenhum serviço encontrado.
-                </td>
-            </tr>
-        `;
+    const tbody = document.getElementById(
+        "tbodyIndicadores"
+    );
+
+
+    if (!tbody) {
+
+        console.error(
+            "Elemento tbodyIndicadores não encontrado."
+        );
+
         return;
     }
 
-    linhas.forEach(inserirLinhaTabela);
-}
+
+    /*
+        Limpa as linhas existentes antes de recriar
+        a tabela.
+    */
+
+    tbody.innerHTML = "";
 
 
-/* =======================================================
-   2. INSERÇÃO E MONTAGEM DAS LINHAS
-======================================================= */
+    /*
+        Verifica se recebemos indicadores.
+    */
 
-/**
- * Cria e insere uma nova linha (tr) na tabela com os dados formatados.
- * @param {Object} linha - Objeto contendo os dados de um serviço individual.
- */
-function inserirLinhaTabela(linha) {
-    const tempo = Number(linha.tempoExcedido ?? 0);
-    const classeTempo = tempo > 0 ? "tempo-excedido" : "";
+    if (
+        !Array.isArray(indicadores)
+        ||
+        indicadores.length === 0
+    ) {
 
-    const tr = document.createElement("tr");
+        const linha = document.createElement(
+            "tr"
+        );
 
-    tr.innerHTML = `
-        <td>${escaparHtml(linha.nrDocumentoSimo ?? "-")}</td>
-        <td>${escaparHtml(linha.nrDocumentoSap ?? "-")}</td>
-        <td>${escaparHtml(linha.uc ?? "-")}</td>
-        <td>${escaparHtml(linha.agencia ?? "-")}</td>
-        <td>${escaparHtml(linha.servico ?? "-")}</td>
-        <td>${escaparHtml(linha.centroTrabalho ?? "-")}</td>
-        <td>${escaparHtml(linha.tipoCentroTrabalho ?? "-")}</td>
-        <td>${formatarDataHora(linha.dataAbertura)}</td>
-        <td>${formatarDataHora(linha.dataLimite)}</td>
-        <td>${formatarDataHora(linha.dataConclusao)}</td>
-        <td class="${classeTempo}">${formatarNumero(linha.tempoExcedido)}</td>
 
-        <td class="valor-compensacao">
-            <div class="valor-compensacao-conteudo">
-                <span class="simbolo-moeda">R$</span>
-                <span class="valor-moeda">
-                    ${formatarMoeda(linha.compensacaoHoje)}
-                </span>
-            </div>
-        </td>
+        const celula = document.createElement(
+            "td"
+        );
 
-        <td class="valor-compensacao">
-            <div class="valor-compensacao-conteudo">
-                <span class="simbolo-moeda">R$</span>
-                <span class="valor-moeda">
-                    ${formatarMoeda(linha.compensacaoAmanha)}
-                </span>
-            </div>
-        </td>
-    `;
 
-    document.getElementById("tbodyServicos").appendChild(tr);
+        celula.colSpan = 3;
+
+        celula.textContent =
+            "Nenhum indicador disponível.";
+
+
+        linha.appendChild(
+            celula
+        );
+
+
+        tbody.appendChild(
+            linha
+        );
+
+
+        return;
+    }
+
+
+    /*
+        Cria uma linha para cada indicador.
+    */
+
+    indicadores.forEach(
+        indicador => {
+
+            const linha = document.createElement(
+                "tr"
+            );
+
+
+            /*------------------------------------------------
+            Nome
+            ------------------------------------------------*/
+
+            const celulaNome = document.createElement(
+                "td"
+            );
+
+            celulaNome.textContent =
+                indicador.nome ?? "-";
+
+
+            /*------------------------------------------------
+            Descrição
+            ------------------------------------------------*/
+
+            const celulaDescricao = document.createElement(
+                "td"
+            );
+
+            celulaDescricao.textContent =
+                indicador.descricao ?? "-";
+
+
+            /*------------------------------------------------
+            Atualização
+            ------------------------------------------------*/
+
+            const celulaAtualizacao = document.createElement(
+                "td"
+            );
+
+            celulaAtualizacao.textContent =
+                indicador.atualizacao ?? "-";
+
+
+            /*------------------------------------------------
+            Monta a linha
+            ------------------------------------------------*/
+
+            linha.appendChild(
+                celulaNome
+            );
+
+            linha.appendChild(
+                celulaDescricao
+            );
+
+            linha.appendChild(
+                celulaAtualizacao
+            );
+
+
+            /*------------------------------------------------
+            Adiciona à tabela
+            ------------------------------------------------*/
+
+            tbody.appendChild(
+                linha
+            );
+        }
+    );
 }
